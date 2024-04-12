@@ -28,7 +28,7 @@ app.get('/', async (req, res) => {
 
 //? a code that picks a user role at random
 let role
-const roles = ['faculty', 'staff']
+const roles = ['admin', 'staff']
 const pickRoles = () => {
     // select role at random
     const randomRole = Math.floor(Math.random() * roles.length)
