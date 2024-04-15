@@ -1,9 +1,18 @@
 require('dotenv').config()
+const mongoose = require('mongoose')
 const express = require('express')
 const cors = require('cors')
 const port = process.env.PORT
 
-
+//! import routes
+const userRoute = require('./routes/user')
+// const departmentRoute = require('./routes/department')
+// const courseRoute = require('./routes/course')
+// const timetableRoute = require('./routes/timetable')
+// const timeslotRoute = require('./routes/timeslot')
+// const activityRoute = require('./routes/activity')
+// const issueRoute = require('./routes/issue')
+// const reportRoute = require('./routes/report')
 
 //! cors options
 const corsOptions = {
@@ -26,40 +35,22 @@ app.get('/', async (req, res) => {
     return res.status(200).json({ message: "Welcome to team Octagon." })
 })
 
-//? a code that picks a user role at random
-let role
-const roles = ['admin', 'faculty']
-const pickRoles = () => {
-    // select role at random
-    const randomRole = Math.floor(Math.random() * roles.length)
-    // set the selected role as role
-    role = roles[randomRole]
-}
+//! routes
+app.use('/user', userRoute)
+// app.use('/department', departmentRoute)
+// app.use('/course', courseRoute)
+// app.use('/timetable', timetableRoute)
+// app.use('/timeslot', timeslotRoute)
+// app.use('/activity', activityRoute)
+// app.use('/issue', issueRoute)
+// app.use('/report', reportRoute)
 
-//! login router
-// user? {email, password, role(value supposedly gotten from endpoint), token}
-app.post('/login', async (req, res) => {
-    try {
-        // get the user data
-        const { email, password } = req.body
+const mongo_uri = process.env.MONGO_URI
 
-        if (!email || !password) {
-            return res.status(400).json({ message: 'All fields must be filled' })
-        }
-
-        // then a request should be made to a third party app for verification
-        // the response is sent along with the json below
-
-        pickRoles() // since this is a sample
-
-        return res.status(200).json({ message: 'User login successful', email, role })
-        // we're supposed to pass the user data with it
-        // which includes the person's role
-        // which determines the access granted to whoever is logging in
-    } catch (error) {
-        return res.status(400).json({ message: 'Error logging in', error })
-    }
-})
-
-//! start the server
-app.listen(port, console.log(`app is running on port ${port}...`))
+//! connect to mongodb
+mongoose.connect(`${mongo_uri}/landmark`)
+    .then(() => {
+        //listen
+        app.listen(port, console.log(`app is connected to mongodb server and running on port ${port}...`))
+    })
+    .catch((error) => console.log({ message: 'error connecting to server', error }))
