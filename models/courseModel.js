@@ -13,9 +13,7 @@ const courseSchema = new Schema({
         required: true,
         unique: true
     },
-    description: {
-        type: String
-    },
+    description: String,
     departmentId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Department',

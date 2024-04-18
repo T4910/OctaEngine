@@ -12,7 +12,8 @@ const departmentSchema = new Schema({
         type: String,
         required: true,
         unique: true
-    }
+    },
+    location: String
 })
 
 module.exports = mongoose.model('Department', departmentSchema)
