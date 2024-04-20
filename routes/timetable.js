@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.post('/add-timetable', addTimetable);
 router.post('/remove-timetable', removeTimetable);
-router.get('/get-timetable', getTimetable);
+router.post('/get-timetable', getTimetable);
 
 module.exports = router;

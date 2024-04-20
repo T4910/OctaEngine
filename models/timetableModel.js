@@ -3,6 +3,17 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const timetableSchema = new Schema({
+    current: Boolean,
+    name: String,
+    description: String,
+    status: {
+        type: String,
+        enum: ['active', 'draft',]
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
     semester: {
         type: String,
         enum: ['alpha', 'omega'],
@@ -42,15 +53,6 @@ const timetableSchema = new Schema({
             default: 60
         }
     },
-    level: {
-        type: Number,
-        enum: [100, 200, 300, 400, 500],
-    },
-    departmentId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Department',
-        required: true
-    },
     type: {
         type: String,
         enum: ['class', 'exam'],
@@ -59,6 +61,15 @@ const timetableSchema = new Schema({
     },
     schedule: [
         {
+            level: {
+                type: Number,
+                enum: [100, 200, 300, 400, 500],
+            },
+            departmentId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Department',
+                required: true
+            },
             day: {
                 type: String,
                 enum: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
