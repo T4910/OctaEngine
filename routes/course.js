@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.post('/add-course', addCourse);
 router.post('/remove-course', removeCourse);
-router.get('/get-course', getCourse);
+router.post('/get-course', getCourse);
 
 module.exports = router;

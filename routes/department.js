@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.post('/add-department', addDepartment);
 router.post('/remove-department', removeDepartment);
-router.get('/get-department', getDepartment);
+router.post('/get-department', getDepartment);
 
 module.exports = router;
