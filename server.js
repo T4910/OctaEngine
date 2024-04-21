@@ -13,6 +13,7 @@ const timetableRoute = require('./routes/timetable')
 // const activityRoute = require('./routes/activity')
 // const issueRoute = require('./routes/issue')
 // const reportRoute = require('./routes/report')
+const venueRoute = require('./routes/venue')
 
 //! cors options
 const corsOptions = {
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 //! index router
 app.get('/', async (req, res) => {
     // Define dummy data
+    
     // const dummyData = [
     //     {
     //       current: true,
@@ -110,6 +112,7 @@ app.use('/course', courseRoute)
 // app.use('/activity', activityRoute)
 // app.use('/issue', issueRoute)
 // app.use('/report', reportRoute)
+app.use('/venue', venueRoute)
 
 const mongo_uri = process.env.MONGO_URI
 

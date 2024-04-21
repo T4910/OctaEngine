@@ -13,6 +13,11 @@ const departmentSchema = new Schema({
         required: true,
         unique: true
     },
+    years: {
+        type: Number,
+        enum: [4, 5]
+        // default: 4
+    },
     location: String
 })
 
