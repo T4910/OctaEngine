@@ -8,12 +8,20 @@ const courseSchema = new Schema({
         required: true,
         unique: true
     },
+    level: {
+        type: Number,
+        required: true
+    },
     title: {
         type: String,
         required: true,
-        unique: true
     },
     description: String,
+    instructor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    } || String,
     departmentId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Department',

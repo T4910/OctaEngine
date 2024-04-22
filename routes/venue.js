@@ -7,6 +7,6 @@ const router = express.Router()
 
 router.post('/add-venue', addVenue)
 router.post('/remove-venue', removeVenue)
-router.get('/get-venue', getVenue)
+router.post('/get-venue', getVenue)
 
 module.exports = router
