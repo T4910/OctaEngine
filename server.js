@@ -122,7 +122,7 @@ const mongo_uri = process.env.MONGO_URI
 //! connect to mongodb
 async function connectDB() {
     try {
-        await mongoose.connect(`${mongo_uri}/landmark`);
+        await mongoose.connect(`${mongo_uri}`);
         console.log('MongoDB connected...')
     } catch (error) {
 
