@@ -1,8 +1,10 @@
 const Course = require('../models/courseModel')
 
 const addCourse = async ( req, res ) => {
+    const fetchedCourses = await Course.find(req?.body).populate('departmentId')
 
-    return res.status(200).json({})
+    console.log(fetchedCourses, `course${8973}`)
+    return res.status(200).json({courses: fetchedCourses})
 }
 
 const getCourse = async ( req, res ) => {
@@ -17,8 +19,8 @@ const getCourse = async ( req, res ) => {
 }
 
 const removeCourse = async ( req, res ) => {
-
-    return res.status(200).json({})
+    const deleted = await Course.findOneAndDelete(req?.body?.id)
+    return res.status(200).json({ deleted })
 }
 
 module.exports = { addCourse, removeCourse, getCourse }

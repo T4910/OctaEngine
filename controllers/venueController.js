@@ -1,8 +1,10 @@
 const Venue = require('../models/venueModel')
 
 const addVenue = async ( req, res ) => {
+    const fetchedVenue = await Course.find(req?.body).populate('departmentId')
+    console.log(fetchedVenue, `venue${7843}`)
 
-    return res.status(200).json({})
+    return res.status(200).json({venue: fetchedVenue})
 }
 const getVenue = async ( req, res ) => {
     const fetchedVenue = 
@@ -15,8 +17,9 @@ const getVenue = async ( req, res ) => {
     return res.status(200).json({venue: fetchedVenue})
 }
 const removeVenue = async ( req, res ) => {
+    const deleted = await Venue.findOneAndDelete(req?.body?.id)
+    return res.status(200).json({ deleted })
 
-    return res.status(200).json({})
 }
 
 module.exports = { addVenue, removeVenue, getVenue }
