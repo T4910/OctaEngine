@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 //! index router
 app.get('/', async (req, res) => {
     // Define dummy data
-    
+
     // const dummyData = [
     //     {
     //       current: true,
@@ -100,7 +100,10 @@ app.get('/', async (req, res) => {
     //   ];
 
     //  const t = await Timetable.insertMany(dummyData);
-    return res.status(200).json({ message: "Welcome to team Octagon.", t });
+    return res.status(200).json({
+        message: "Welcome to team Octagon.",
+        // t
+    });
 })
 
 //! routes
@@ -117,18 +120,18 @@ app.use('/venue', venueRoute)
 const mongo_uri = process.env.MONGO_URI
 
 //! connect to mongodb
-async function connectDB(){
-    try{
-        await mongoose.connect(`${mongo_uri}`);
+async function connectDB() {
+    try {
+        await mongoose.connect(`${mongo_uri}/landmark`);
         console.log('MongoDB connected...')
-    } catch(error) {
-    
+    } catch (error) {
+
         console.log({ message: 'error connecting to database', error })
     }
 }
 
 
-async function main(){
+async function main() {
     app.listen(port, console.log(`app is running on port ${port}...`))
     await connectDB();
 }
