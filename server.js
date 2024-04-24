@@ -17,7 +17,7 @@ const venueRoute = require('./routes/venue')
 
 //! cors options
 const corsOptions = {
-    origin: [process.env.WEBSITE]
+    origin: [process.env.WEBSITE, process.env.WEBSITE2]
 }
 
 //! express app
