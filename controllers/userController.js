@@ -22,7 +22,7 @@ const loginUser = async (req, res) => {
         console.log('User logged in successfully.');
         // You can send a success response to the client.
         console.log(user, 23)
-        return res.status(200).json({ message: 'User login successful', ...user })
+        return res.status(200).json({ message: 'User login successful', ...user._doc })
     
     } catch (err) {
         console.error('Error logging in user:', err);
