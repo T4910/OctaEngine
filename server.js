@@ -15,6 +15,9 @@ const timetableRoute = require('./routes/timetable')
 // const reportRoute = require('./routes/report')
 const venueRoute = require('./routes/venue')
 
+const Timetable = require('./models/timetableModel')
+
+
 //! cors options
 const corsOptions = {
     origin: [process.env.WEBSITE, process.env.WEBSITE2]
