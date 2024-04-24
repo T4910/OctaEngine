@@ -1,8 +1,20 @@
 const Department = require('../models/departmentModel')
 
 const addDepartment = async ( req, res ) => {
-    const fetchedDepartment = await Course.find(req?.body)
-    console.log(fetchedDepartment, `depart${9843}`)
+    let fetchedDepartment; 
+    try{
+        fetchedDepartment = await Department.create({
+            name: req?.body?.name,
+            code: req?.body?.code?.toLowerCase(),
+            location: req?.body?.location??'',
+            years: req?.body?.years??4
+        })
+        console.log(fetchedDepartment, `depart${9843}`)
+
+    } catch (e) {
+            console.log(e,89988)
+        return res.status(200).json({department: e})
+    }
 
     return res.status(200).json({department: fetchedDepartment})
 }
